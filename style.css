@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Nunito Sans", sans-serif;
+    background: hsl(0, 0%, 97%);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 1px 1px 10px lightgray;
+    padding: 1rem 0;
+}
+
+.nav__logo {
+    font-size: 1rem;
+}
+
+.nav__toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nav__toggle img {
+    width: 1rem;
+    margin-right: .5rem;
+}
+
+.nav__toggle p {
+    font-size: .8rem;
+}
+
+form {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-top: 1.5rem;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+#search-input {
+    width: 97%;
+    padding: .6rem;
+    margin: 0 auto;
+}
+
+.flow {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, auto));
+    gap: 3rem;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.box1 {
+    background: white;
+    box-shadow: 1px 1px 5px lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box1__flag {
+    width: 100%;
+}
+
+.box1__info {
+    width: 80%;
+    margin: 1rem auto 3rem auto;
+}
+
+.box__info-name {
+    margin: 1rem 0;
+}
+
+.box__info-population,
+.box__info-region,
+.box__info-capital {
+    margin: .25rem 0;
+    font-weight: 600;
+}
+
+/* set the dynamic content within above classes to lower font-weight */
+p span {
+    font-weight: 300;
+}
+
+
+.box2 {
+    background:royalblue;
+}
+.box3 {
+    background:goldenrod;
+
+}
+.box4 {
+    background:grey;
+
+}
+.box5 {
+    background:paleturquoise;
+
+}
+.box6 {
+    background:aliceblue;
+
+}
