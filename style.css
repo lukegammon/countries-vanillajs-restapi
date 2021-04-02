@@ -37,6 +37,7 @@ body {
 
 .nav__toggle p {
     font-size: .8rem;
+    color: gray;
 }
 
 form {
