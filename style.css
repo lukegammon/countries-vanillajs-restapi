@@ -10,6 +10,8 @@ body {
     background: hsl(0, 0%, 97%);
 }
 
+
+
 .nav {
     display: flex;
     align-items: center;
@@ -38,22 +40,59 @@ body {
 }
 
 form {
- display: flex;
- align-items: center;
- justify-content: center;
- margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
 }
 
 main {
     width: 80%;
-    margin: 0 auto;
+    margin: 2rem auto;
     
 }
 
-#search-input {
-    width: 97%;
-    padding: .6rem;
+.search {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.search__input {
+    width: 100%;
+    padding: .6rem 3rem;
     margin: 0 auto;
+    align-self: flex-start;
+    border-radius: .5rem;
+    border: none;
+    box-shadow: 1px 1px 5px lightgray;
+    font-family: "Nunito Sans", sans-serif;
+    
+}
+
+.search__icon {
+    position: absolute;
+    top: .4rem;
+    left: 1rem;
+    width: 1.5rem;
+}
+
+.search__dropdown {
+    padding: .6rem 1rem;
+    margin-top: 1rem;
+    align-self: flex-start;
+    background: white;
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 1px 1px 5px lightgray;
+    font-family: "Nunito Sans", sans-serif;
+    display: flex;
+}
+
+/* style for icon in dropdown menu*/
+.search__dropdown img {
+    width: 1rem;
+    margin-left: 1rem;
 }
 
 .flow {
@@ -66,31 +105,32 @@ main {
     width: 100%;
 }
 
-.box1 {
+.card {
     background: white;
     box-shadow: 1px 1px 5px lightgray;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    border-radius: .5rem;
+    overflow: hidden;
 }
 
-.box1__flag {
-    width: 100%;
+.card__flag {
+    height: 10rem;
+    object-fit: cover;
 }
 
-.box1__info {
+.card__info {
     width: 80%;
     margin: 1rem auto 3rem auto;
 }
 
-.box__info-name {
+.card__info-name {
     margin: 1rem 0;
 }
 
-.box__info-population,
-.box__info-region,
-.box__info-capital {
+.card__info-population,
+.card__info-region,
+.card__info-capital {
     margin: .25rem 0;
     font-weight: 600;
 }
@@ -100,23 +140,3 @@ p span {
     font-weight: 300;
 }
 
-
-.box2 {
-    background:royalblue;
-}
-.box3 {
-    background:goldenrod;
-
-}
-.box4 {
-    background:grey;
-
-}
-.box5 {
-    background:paleturquoise;
-
-}
-.box6 {
-    background:aliceblue;
-
-}
