@@ -1,19 +1,36 @@
 const flow = document.querySelector(".flow");
 
-async function fetchData(region) {
-    const response = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);
-    const countries = await response.json();
-    console.log(countries);
-    countries.forEach(obj => {
-        const flag = obj.flag;
-        const name = obj.name;
-        const population = Number(obj.population).toLocaleString();
-        const region = obj.region;
-        const capital = obj.capital;
-        const countryData = setData(name, flag, population, region, capital);
-        flow.innerHTML += countryData;
-    })
+async function fetchData(region, name) {
+    flow.innerHTML = "";
+    if(region) {
+        const response = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);
+        const countries = await response.json();
+        displayCountries(countries);
+    } else if(name) {
+        const response = await fetch(`https://restcountries.eu/rest/v2/name/${name}`);
+        const countries = await response.json();
+        displayCountries(countries);
+    } else {
+        const response = await fetch('https://restcountries.eu/rest/v2/all');
+        const countries = await response.json();
+        displayCountries(countries);
+    }
+
+    function displayCountries(countries) {
+        countries.forEach(obj => {
+            const flag = obj.flag;
+            const name = obj.name;
+            const population = Number(obj.population).toLocaleString();
+            const region = obj.region;
+            const capital = obj.capital;
+            const countryData = setData(name, flag, population, region, capital);
+            flow.innerHTML += countryData;
+        });
+    }
 }
+
+//Run first will all countries data
+fetchData(null, null);
 
 function setData(name, flag, population, region, capital) {
     return `<div class="card">
@@ -27,5 +44,39 @@ function setData(name, flag, population, region, capital) {
 </div>`
 }
 
-fetchData("asia");
+// click event for dropdown region select
 
+const dropdownMenu = document.querySelector(".search__dropdown");
+const dropdownMenuExpanded = document.querySelector(".search__dropdown-options");
+const dropdownMenuOptions = document.querySelectorAll(".search__dropdown-option");
+dropdownMenu.addEventListener("click", () => {
+    dropdownMenuExpanded.style.display === "flex" ?
+    dropdownMenuExpanded.style.display = "none" :
+    dropdownMenuExpanded.style.display = "flex";
+});
+
+dropdownMenuOptions.forEach(option => {
+    option.addEventListener("click", (e) => {
+        dropdownMenuExpanded.style.display = "none";
+        const region = e.target.innerHTML;
+        fetchData(region, null);
+    });
+})
+
+// search dynamically via user input
+/*
+const input = document.querySelector(".search__input");
+input.addEventListener("input", () => { 
+    flow.innerHTML = "";
+    doSearch();
+})
+
+let delayTimer;
+    function doSearch() {
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function() {
+            const inputValue = input.value;
+            fetchData(null, inputValue);
+        }, 1000); // Will do the ajax stuff after 1000 ms
+    }
+*/
