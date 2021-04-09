@@ -85,6 +85,5 @@ let delayTimer;
         delayTimer = setTimeout(function() {
             const inputValue = input.value;
             fetchData(null, inputValue);
-            console.log("executed");
         }, 500); // Will do the ajax stuff after 1000 ms
     }
