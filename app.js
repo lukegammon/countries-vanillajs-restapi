@@ -21,6 +21,7 @@ function setViewMode(viewMode) {
     const navBackground = document.querySelector("header");
     const searchBox = document.querySelector(".search__input");
     const searchDropdown = document.querySelector(".search__dropdown");
+    const searchDropdownOptions = document.querySelector(".search__dropdown-options");
     if(viewMode === "dark") {
         background.style.background = "hsl(207, 26%, 17%)";
         title.style.color = "hsl(0, 0%, 100%)";
@@ -29,10 +30,15 @@ function setViewMode(viewMode) {
         navModeText.innerHTML = "Light Mode";
         searchBox.style.boxShadow = "1px 1px 5px black";
         searchBox.style.background = "hsl(209, 23%, 22%)";
+        searchBox.style.color = "hsl(0, 0%, 100%)";
         searchDropdown.style.boxShadow = "1px 1px 5px black";
         searchDropdown.style.background = "hsl(209, 23%, 22%)";
         searchDropdown.style.color = "hsl(0, 0%, 100%)";
         searchDropdown.lastChild.src = "./img/chevron-down-outline-darkmode.svg";
+        searchDropdownOptions.style.boxShadow = "1px 1px 5px black";
+        searchDropdownOptions.style.background = "hsl(209, 23%, 22%)";
+        searchDropdownOptions.style.color = "hsl(0, 0%, 100%)";
+        
         cards.forEach(card => {
             card.style.background = "hsl(209, 23%, 22%)";
             card.style.color = "hsl(0, 0%, 100%)";
@@ -45,11 +51,15 @@ function setViewMode(viewMode) {
         navBackground.style.boxShadow = "1px 1px 5px lightgrey";
         navModeText.innerHTML = "Dark Mode";
         searchBox.style.boxShadow = "1px 1px 5px lightgrey";
-        searchBox.style.background ="hsl(0, 0%, 100%)";
+        searchBox.style.background = "hsl(0, 0%, 100%)";
+        searchBox.style.color = "hsl(200, 15%, 8%)";
         searchDropdown.style.boxShadow = "1px 1px 5px lightgrey";
         searchDropdown.style.background = "hsl(0, 0%, 100%)";
         searchDropdown.style.color = "hsl(200, 15%, 8%)"
         searchDropdown.lastChild.src = "./img/chevron-down-outline.svg";
+        searchDropdownOptions.style.background = "hsl(0, 0%, 100%)";
+        searchDropdownOptions.style.color = "hsl(200, 15%, 8%)"
+        searchDropdownOptions.style.boxShadow = "1px 1px 5px lightgrey";
         cards.forEach(card => {
             card.style.background = "hsl(0, 0%, 100%)";
             card.style.color = "hsl(200, 15%, 8%)";
@@ -72,7 +82,7 @@ async function fetchData(region, name) {
             const countries = await response.json();
                 displayCountries(countries);
         } catch (err) {
-            console.err(err);
+            console.error(err);
         }   
     } else {
         const response = await fetch('https://restcountries.eu/rest/v2/europe');
@@ -89,6 +99,11 @@ async function fetchData(region, name) {
             const capital = obj.capital;
             const countryData = setData(name, flag, population, region, capital);
             flow.innerHTML += countryData;
+            if(lightMode) {
+                setViewMode("light");
+            } else {
+                setViewMode("dark");
+            }
         });
     }
 }
