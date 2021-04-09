@@ -1,5 +1,64 @@
-const flow = document.querySelector(".flow");
+// dark mode toggle
+const darkmodeToggle = document.querySelector(".nav__toggle");
+let lightMode = true;
 
+darkmodeToggle.addEventListener("click", () => {
+    if(lightMode) {
+        setViewMode("dark");
+        lightMode = false;
+    } else {
+        setViewMode("light");
+        lightMode = true;
+    }
+});
+
+
+function setViewMode(viewMode) {
+    const cards = document.querySelectorAll(".card");
+    const background = document.querySelector("body");
+    const title = document.querySelector(".nav__logo");
+    const navModeText = document.querySelector(".nav__toggle-text");
+    const navBackground = document.querySelector("header");
+    const searchBox = document.querySelector(".search__input");
+    const searchDropdown = document.querySelector(".search__dropdown");
+    if(viewMode === "dark") {
+        background.style.background = "hsl(207, 26%, 17%)";
+        title.style.color = "hsl(0, 0%, 100%)";
+        navBackground.style.background = "hsl(209, 23%, 22%)";
+        navBackground.style.boxShadow = "1px 1px 5px black";
+        navModeText.innerHTML = "Light Mode";
+        searchBox.style.boxShadow = "1px 1px 5px black";
+        searchBox.style.background = "hsl(209, 23%, 22%)";
+        searchDropdown.style.boxShadow = "1px 1px 5px black";
+        searchDropdown.style.background = "hsl(209, 23%, 22%)";
+        searchDropdown.style.color = "hsl(0, 0%, 100%)";
+        searchDropdown.lastChild.src = "./img/chevron-down-outline-darkmode.svg";
+        cards.forEach(card => {
+            card.style.background = "hsl(209, 23%, 22%)";
+            card.style.color = "hsl(0, 0%, 100%)";
+            card.style.boxShadow = "1px 1px 5px black";
+        });
+    } else {
+        background.style.background = "hsl(0, 0%, 97%)";
+        title.style.color = "hsl(200, 15%, 8%)";
+        navBackground.style.background = "none";
+        navBackground.style.boxShadow = "1px 1px 5px lightgrey";
+        navModeText.innerHTML = "Dark Mode";
+        searchBox.style.boxShadow = "1px 1px 5px lightgrey";
+        searchBox.style.background ="hsl(0, 0%, 100%)";
+        searchDropdown.style.boxShadow = "1px 1px 5px lightgrey";
+        searchDropdown.style.background = "hsl(0, 0%, 100%)";
+        searchDropdown.style.color = "hsl(200, 15%, 8%)"
+        searchDropdown.lastChild.src = "./img/chevron-down-outline.svg";
+        cards.forEach(card => {
+            card.style.background = "hsl(0, 0%, 100%)";
+            card.style.color = "hsl(200, 15%, 8%)";
+            card.style.boxShadow = "1px 1px 5px lightgray";
+        });
+    }
+}
+
+const flow = document.querySelector(".flow");
 
 async function fetchData(region, name) {
     flow.innerHTML = "";
@@ -56,7 +115,7 @@ const dropdownMenuExpanded = document.querySelector(".search__dropdown-options")
 const dropdownMenuOptions = document.querySelectorAll(".search__dropdown-option");
 dropdownMenu.addEventListener("click", () => {
     let inputData = document.querySelector(".search__input");
-        inputData.value = "";
+    inputData.value = "";
     dropdownMenuExpanded.style.display === "flex" ?
     dropdownMenuExpanded.style.display = "none" :
     dropdownMenuExpanded.style.display = "flex";
@@ -64,7 +123,6 @@ dropdownMenu.addEventListener("click", () => {
 
 dropdownMenuOptions.forEach(option => {
     option.addEventListener("click", (e) => {
-        
         dropdownMenuExpanded.style.display = "none";
         const region = e.target.innerHTML;
         fetchData(region, null);
@@ -80,13 +138,15 @@ searchInput.addEventListener("input", () => {
 
 let delayTimer;
 
-    function doSearch() {
-        if (searchInput.value === "" || searchInput.value.length < 2) {
-            return fetchData("europe", null);
-        }
-        clearTimeout(delayTimer);
-        delayTimer = setTimeout(function() {
-            const inputValue = searchInput.value;
-            fetchData(null, inputValue);
-        }, 500); // Will do the ajax stuff after 1000 ms
+function doSearch() {
+    if (searchInput.value === "" || searchInput.value.length < 2) {
+        return fetchData("europe", null);
     }
+    clearTimeout(delayTimer);
+    delayTimer = setTimeout(function() {
+        const inputValue = searchInput.value;
+        fetchData(null, inputValue);
+    }, 500); // Will do the ajax stuff after 500 ms
+};
+
+

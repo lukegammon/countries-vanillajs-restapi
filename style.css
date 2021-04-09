@@ -39,7 +39,7 @@ header {
     margin-right: .5rem;
 }
 
-.nav__toggle p {
+.nav__toggle-text {
     font-size: .8rem;
     color: gray;
 }
@@ -143,6 +143,8 @@ main {
     border-radius: .5rem;
     overflow: hidden;
     max-width: 20rem;
+    cursor: pointer;
+    color: hsl(200, 15%, 8%);
 }
 
 .card__flag {
