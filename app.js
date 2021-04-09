@@ -5,6 +5,7 @@ async function fetchData(region, name) {
     if(region) {
         const response = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);
         const countries = await response.json();
+        input.value == "";
         displayCountries(countries);
     } else if(name) {
         try {
@@ -13,8 +14,7 @@ async function fetchData(region, name) {
                 displayCountries(countries);
         } catch (err) {
             console.err(err);
-        }
-            
+        }   
     } else {
         const response = await fetch('https://restcountries.eu/rest/v2/europe');
         const countries = await response.json();
