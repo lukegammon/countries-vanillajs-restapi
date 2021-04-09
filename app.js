@@ -7,11 +7,16 @@ async function fetchData(region, name) {
         const countries = await response.json();
         displayCountries(countries);
     } else if(name) {
-        const response = await fetch(`https://restcountries.eu/rest/v2/name/${name}`);
-        const countries = await response.json();
-        displayCountries(countries);
+        try {
+            const response = await fetch(`https://restcountries.eu/rest/v2/name/${name}`);
+            const countries = await response.json();
+                displayCountries(countries);
+        } catch (err) {
+            console.err(err);
+        }
+            
     } else {
-        const response = await fetch('https://restcountries.eu/rest/v2/all');
+        const response = await fetch('https://restcountries.eu/rest/v2/europe');
         const countries = await response.json();
         displayCountries(countries);
     }
@@ -30,7 +35,7 @@ async function fetchData(region, name) {
 }
 
 //Run first will all countries data
-fetchData(null, null);
+fetchData("europe", null);
 
 function setData(name, flag, population, region, capital) {
     return `<div class="card">
@@ -63,20 +68,23 @@ dropdownMenuOptions.forEach(option => {
     });
 })
 
-// search dynamically via user input
-/*
+
 const input = document.querySelector(".search__input");
 input.addEventListener("input", () => { 
     flow.innerHTML = "";
     doSearch();
-})
+});
 
 let delayTimer;
+
     function doSearch() {
+        if (input.value === "" || input.value.length < 2) {
+            return fetchData("europe", null);
+        }
         clearTimeout(delayTimer);
         delayTimer = setTimeout(function() {
             const inputValue = input.value;
             fetchData(null, inputValue);
-        }, 1000); // Will do the ajax stuff after 1000 ms
+            console.log("executed");
+        }, 500); // Will do the ajax stuff after 1000 ms
     }
-*/
