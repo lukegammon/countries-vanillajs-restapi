@@ -10,14 +10,18 @@ body {
     background: hsl(0, 0%, 97%);
 }
 
+header {
+    box-shadow: 1px 1px 10px lightgray;
+}
 
 
 .nav {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    box-shadow: 1px 1px 10px lightgray;
+    justify-content: space-between;
+    width: 70%;
     padding: 1rem 0;
+    margin: 0 auto;
 }
 
 .nav__logo {
@@ -126,7 +130,6 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15rem, auto));
     gap: 3rem;
-    justify-content: center;
     margin: 0 auto;
     margin-top: 2rem;
     width: 100%;
@@ -139,6 +142,7 @@ main {
     flex-direction: column;
     border-radius: .5rem;
     overflow: hidden;
+    max-width: 20rem;
 }
 
 .card__flag {
