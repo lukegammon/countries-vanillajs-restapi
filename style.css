@@ -139,7 +139,7 @@ main {
     flex-direction: column;
     border-radius: .5rem;
     overflow: hidden;
-    max-width: 10rem;
+    max-width: 20rem;
 }
 
 .card__flag {
