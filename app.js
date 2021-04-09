@@ -1,11 +1,11 @@
 const flow = document.querySelector(".flow");
 
+
 async function fetchData(region, name) {
     flow.innerHTML = "";
     if(region) {
         const response = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);
         const countries = await response.json();
-        input.value == "";
         displayCountries(countries);
     } else if(name) {
         try {
@@ -34,7 +34,7 @@ async function fetchData(region, name) {
     }
 }
 
-//Run first will all countries data
+//Run first will europe data
 fetchData("europe", null);
 
 function setData(name, flag, population, region, capital) {
@@ -55,6 +55,8 @@ const dropdownMenu = document.querySelector(".search__dropdown");
 const dropdownMenuExpanded = document.querySelector(".search__dropdown-options");
 const dropdownMenuOptions = document.querySelectorAll(".search__dropdown-option");
 dropdownMenu.addEventListener("click", () => {
+    let inputData = document.querySelector(".search__input");
+        inputData.value = "";
     dropdownMenuExpanded.style.display === "flex" ?
     dropdownMenuExpanded.style.display = "none" :
     dropdownMenuExpanded.style.display = "flex";
@@ -62,6 +64,7 @@ dropdownMenu.addEventListener("click", () => {
 
 dropdownMenuOptions.forEach(option => {
     option.addEventListener("click", (e) => {
+        
         dropdownMenuExpanded.style.display = "none";
         const region = e.target.innerHTML;
         fetchData(region, null);
@@ -69,8 +72,8 @@ dropdownMenuOptions.forEach(option => {
 })
 
 
-const input = document.querySelector(".search__input");
-input.addEventListener("input", () => { 
+let searchInput = document.querySelector(".search__input");
+searchInput.addEventListener("input", () => { 
     flow.innerHTML = "";
     doSearch();
 });
@@ -78,12 +81,12 @@ input.addEventListener("input", () => {
 let delayTimer;
 
     function doSearch() {
-        if (input.value === "" || input.value.length < 2) {
+        if (searchInput.value === "" || searchInput.value.length < 2) {
             return fetchData("europe", null);
         }
         clearTimeout(delayTimer);
         delayTimer = setTimeout(function() {
-            const inputValue = input.value;
+            const inputValue = searchInput.value;
             fetchData(null, inputValue);
         }, 500); // Will do the ajax stuff after 1000 ms
     }
