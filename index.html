@@ -11,10 +11,12 @@
 
     <header>
         <nav class="nav">
-            <h1 class="nav__logo">Where in the world?</h1>
-            <div class="nav__toggle">
-                <img src="./img/light-mode-icon.svg" alt="light mode">
-                <p class="nav__toggle-text">Dark Mode</p>
+            <div class="nav-container">
+                <h1 class="nav__logo">Where in the world?</h1>
+                <div class="nav__toggle">
+                    <img src="./img/light-mode-icon.svg" alt="light mode">
+                    <p class="nav__toggle-text">Dark Mode</p>
+                </div>
             </div>
         </nav>
     </header>
@@ -35,7 +37,36 @@
         
         <section class="flow">           
         </section>
-        <div class="country-modal">
+
+        <div class="modal">
+            <button class="modal__backbtn"><img src="./img/arrow-back-outline.svg">Back</button>
+            <div class="modal-container">
+                <img class="modal__flag" src="./img/Flag-South-Korea.jpg" alt="">
+                <div class="modal__info">
+                    <h2 class="modal__info-name">South Korea</h2>
+                    <div class="modal__info-main">
+                        <div class="modal__info-main-left">
+                            <p class="modal__info-main-native">Native Name: </p>
+                            <p class="modal__info-main-population">Population: </p>
+                            <p class="modal__info-main-region">Region:</p>
+                            <p class="modal__info-main-subregion">Sub Region: </p>
+                            <p class="modal__info-main-capital">Capital: </p>
+                        </div>
+                        <div class="modal__info-main-right">
+                            <p class="modal__info-main-domain">Top Level Domain: </p>
+                            <p class="modal__info-main-currencies">Currencies: </p>
+                            <p class="modal__info-main-languages">Languages: </p>
+                        </div>
+                        
+                    </div>
+                    <div class="modal__info-bordercountries">
+                        <p>Border Countries:</p>
+                        <button>France</button>
+                        <button>Germany</button>
+                        <button>Netherlands</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 

@@ -11,17 +11,24 @@ body {
 }
 
 .nav {
-    display: flex;
-    align-items: center;
     position: fixed;
     top: 0;
-    padding: 1rem 15rem;
-    justify-content: space-between;
     width: 100%;
-    margin: 0 auto;
+    background: pink;
     z-index: 10;
     box-shadow: 1px 1px 10px lightgray;
     background:hsl(0, 0%, 97%);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    left: 20px;
+    width: 75%;
+    margin: 0 auto;
+    
 }
 
 .nav__logo {
@@ -173,15 +180,88 @@ p span {
     font-weight: 300;
 }
 
-.country-modal {
+.modal {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    background: black;
+    background: white;
     height: 100%;
     width: 100%;
-    opacity: 0;
     z-index: 9;
+}
+
+.modal__backbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 8.5rem;
+    left: 12.5%;
+    padding: .25rem 2rem;
+    border: none;
+    background: none;
+    box-shadow: 1px 1px 10px lightgray;
+    cursor: pointer;
+}
+
+/* back arrow in button */
+.modal__backbtn img {
+    padding-right: 1rem;
+}
+
+.modal-container {
+    display: flex;
+    align-items: center;
+    width: 75%;
+    margin: 15rem auto;
+    border: 1px solid grey;
+}
+
+.modal__flag {
+    width: 40%;
+}
+
+.modal__info {
+    padding: 5rem;
+}
+
+.modal__info-main {
+    display: flex;
+}
+
+.modal__info-main p {
+    font-weight: 600;
+    margin: .5rem 5rem .5rem 0;
+}
+
+.modal__info-name {
+    margin-bottom: 1rem;
+}
+
+.modal__info-main-left {
+    margin-bottom: 1rem;
+}
+
+.modal__info-main-right {
+    margin-bottom: 1rem;
+}
+
+.modal__info-bordercountries {
+    font-weight: 600;
+    display: flex;
+    margin-top: 5rem;
+}
+
+
+.modal__info-bordercountries button {
+    padding: .25rem 1rem;
+    margin-left: .5rem;
+    border: none;
+    background: none;
+    box-shadow: 1px 1px 10px lightgray;
+    cursor: pointer;
+    font-weight: 300;
+    color: gray;
 }
 
