@@ -7,21 +7,21 @@
 
 body {
     font-family: "Nunito Sans", sans-serif;
-    background: hsl(0, 0%, 97%);
+    background: white;
 }
-
-header {
-    box-shadow: 1px 1px 10px lightgray;
-}
-
 
 .nav {
     display: flex;
     align-items: center;
+    position: fixed;
+    top: 0;
+    padding: 1rem 15rem;
     justify-content: space-between;
-    width: 70%;
-    padding: 1rem 0;
+    width: 100%;
     margin: 0 auto;
+    z-index: 10;
+    box-shadow: 1px 1px 10px lightgray;
+    background:hsl(0, 0%, 97%);
 }
 
 .nav__logo {
@@ -48,7 +48,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1.5rem;
+    margin-top: 5rem;
 }
 
 main {
@@ -171,5 +171,17 @@ main {
 /* set the dynamic content within above classes to lower font-weight */
 p span {
     font-weight: 300;
+}
+
+.country-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: black;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 9;
 }
 

@@ -18,7 +18,7 @@ function setViewMode(viewMode) {
     const background = document.querySelector("body");
     const title = document.querySelector(".nav__logo");
     const navModeText = document.querySelector(".nav__toggle-text");
-    const navBackground = document.querySelector("header");
+    const navBackground = document.querySelector(".nav");
     const searchBox = document.querySelector(".search__input");
     const searchDropdown = document.querySelector(".search__dropdown");
     const searchDropdownOptions = document.querySelector(".search__dropdown-options");
@@ -47,7 +47,7 @@ function setViewMode(viewMode) {
     } else {
         background.style.background = "hsl(0, 0%, 97%)";
         title.style.color = "hsl(200, 15%, 8%)";
-        navBackground.style.background = "none";
+        navBackground.style.background = "hsl(0, 0%, 97%)";
         navBackground.style.boxShadow = "1px 1px 5px lightgrey";
         navModeText.innerHTML = "Dark Mode";
         searchBox.style.boxShadow = "1px 1px 5px lightgrey";
