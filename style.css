@@ -184,11 +184,10 @@ p span {
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
     background: white;
-    height: 100%;
     width: 100%;
     z-index: 9;
+    overflow-y: scroll;
 }
 
 .modal__backbtn {
@@ -219,11 +218,13 @@ p span {
 }
 
 .modal__flag {
-    width: 40%;
+    max-width: 30rem;
+    min-width: 10rem;
 }
 
 .modal__info {
-    padding: 5rem;
+    width: 90%;
+    padding: 2rem;
 }
 
 .modal__info-main {
@@ -265,3 +266,43 @@ p span {
     color: gray;
 }
 
+@media only screen and (max-width: 1024px) {
+    /* For mobile phones: */
+
+    main {
+        font-size: 70%;
+    }
+  
+    .modal-container {
+        display: flex;
+        width: 95%;
+        flex-direction: column;
+        margin: 9rem auto;
+    }
+
+    .modal__info {
+        padding: 0;
+    }
+
+    .modal__backbtn {
+        top: 5rem;
+    }
+
+    .modal__flag {
+    width: 60%;
+    }
+
+    .modal__info-main {
+        flex-direction: column;
+    }
+
+    .modal__info-bordercountries {
+        width: 100%;
+        margin-top: 0;
+        align-items: center;
+    }
+
+    .modal__info-bordercountries button {
+        margin: .5rem 0;
+    }
+}
