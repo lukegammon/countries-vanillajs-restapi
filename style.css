@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+button {
+    font-family: "Nunito Sans", sans-serif;
+}
+
 body {
     font-family: "Nunito Sans", sans-serif;
     background: white;
@@ -183,9 +187,9 @@ p span {
 .modal {
     position: fixed;
     top: 0;
-    left: 0;
-    background: white;
-    width: 100%;
+    left: 5%;
+    min-height: 100vh;
+    background: rgb(247, 247, 247);
     z-index: 9;
     overflow-y: scroll;
 }
@@ -195,9 +199,9 @@ p span {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 8.5rem;
-    left: 12.5%;
-    padding: .25rem 2rem;
+    top: 5.5rem;
+    left: 0;
+    padding: .4rem 1.5rem;
     border: none;
     background: none;
     box-shadow: 1px 1px 10px lightgray;
@@ -206,103 +210,54 @@ p span {
 
 /* back arrow in button */
 .modal__backbtn img {
-    padding-right: 1rem;
+    width: 1.5rem;
+    padding-right: .4rem;
 }
 
 .modal-container {
+    width: 90%;
+    position: relative;
+    top: 10rem;
     display: flex;
-    align-items: center;
-    width: 75%;
-    margin: 15rem auto;
-    border: 1px solid grey;
+    flex-direction: column;
 }
 
 .modal__flag {
-    max-width: 30rem;
-    min-width: 10rem;
-}
-
-.modal__info {
-    width: 90%;
-    padding: 2rem;
-}
-
-.modal__info-main {
-    display: flex;
-}
-
-.modal__info-main p {
-    font-weight: 600;
-    margin: .5rem 5rem .5rem 0;
+    width: 100%;
+    align-self: center;
 }
 
 .modal__info-name {
-    margin-bottom: 1rem;
+    margin: 1.5rem 0;
 }
 
-.modal__info-main-left {
-    margin-bottom: 1rem;
+.modal__info-main p {
+    margin: .5rem 0;
+    font-size: .8rem;
+    font-weight: 600;
 }
 
 .modal__info-main-right {
-    margin-bottom: 1rem;
+    margin: 2rem 0;
 }
 
 .modal__info-bordercountries {
-    font-weight: 600;
-    display: flex;
-    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 
+.modal__info-bordercountries p {
+    margin: .5rem 0;
+    font-size: .9rem;
+    font-weight: 600;
+}
 
 .modal__info-bordercountries button {
-    padding: .25rem 1rem;
-    margin-left: .5rem;
+    padding: .3rem .8rem;
+    text-align: center;
     border: none;
     background: none;
     box-shadow: 1px 1px 10px lightgray;
+    font-size: .7rem;
     cursor: pointer;
-    font-weight: 300;
-    color: gray;
 }
 
-@media only screen and (max-width: 1024px) {
-    /* For mobile phones: */
-
-    main {
-        font-size: 70%;
-    }
-  
-    .modal-container {
-        display: flex;
-        width: 95%;
-        flex-direction: column;
-        margin: 9rem auto;
-    }
-
-    .modal__info {
-        padding: 0;
-    }
-
-    .modal__backbtn {
-        top: 5rem;
-    }
-
-    .modal__flag {
-    width: 60%;
-    }
-
-    .modal__info-main {
-        flex-direction: column;
-    }
-
-    .modal__info-bordercountries {
-        width: 100%;
-        margin-top: 0;
-        align-items: center;
-    }
-
-    .modal__info-bordercountries button {
-        margin: .5rem 0;
-    }
-}
