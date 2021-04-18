@@ -106,6 +106,21 @@ async function fetchData(region, name) {
             }
         });
     }
+    /* Make Cards Clickable */
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            openModal();
+        })
+    })
+}
+
+function openModal() {
+    const modal = document.querySelector(".modal");
+    const body = document.querySelector("body");
+    modal.style.display = "block";
+    body.style.position = "fixed";
+    body.style.overflowY = "hidden";
 }
 
 //Run first will europe data
@@ -166,4 +181,5 @@ function doSearch() {
 
 
 // DISABLE BODY SCROLL ON MODAL OPEN
+// ADD DARK MODE / LIGHT MODE TO MODAL ON OPEN
 

@@ -13,7 +13,9 @@ body {
     font-family: "Nunito Sans", sans-serif;
     background: white;
     /* Testing no scroll under modal */
-    overflow-y: hidden;
+    overflow-y: auto;
+    /* changes to position fixed when modal opened to allow modal view on mobile */
+    position: static;
 }
 
 .nav {
@@ -186,6 +188,7 @@ p span {
 }
 
 .modal {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
