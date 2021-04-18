@@ -186,11 +186,11 @@ p span {
 }
 
 .modal {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    min-height: 100vh;
+    height: 100%;
     background: rgb(247, 247, 247);
     z-index: 9;
     overflow-y: scroll;
