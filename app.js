@@ -110,12 +110,13 @@ async function fetchData(region, name) {
     const cards = document.querySelectorAll(".card");
     cards.forEach(card => {
         card.addEventListener("click", () => {
-            openModal();
+            country = card.lastElementChild.firstElementChild.innerHTML;
+            openModal(country);
         })
     })
 }
 
-function openModal() {
+function openModal(country) {
     const modal = document.querySelector(".modal");
     const body = document.querySelector("body");
     const backButton = document.querySelector(".modal__backbtn");
@@ -123,10 +124,78 @@ function openModal() {
         modal.style.display = "none";
         body.style.position = "static";
     });
-    modal.style.display = "block";
+    setModalData(country, modal);
+    modal.style.display = "flex";
     body.style.position = "fixed";
-
 }
+
+async function setModalData(country, modal) {
+    const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+    const countryData = await response.json();
+    console.log(countryData);
+    console.log(modal);
+    //Collect and display data in modal
+    const flag = countryData[0].flag;
+    const name = countryData[0].name;
+    const nativeName = countryData[0].nativeName;
+    const population = countryData[0].population.toLocaleString();
+    const region = countryData[0].region;
+    const subRegion = countryData[0].subregion;
+    const capital = countryData[0].capital;
+    const topLevelDomain = countryData[0].topLevelDomain[0];
+    const currencies = countryData[0].currencies;
+    const languages = countryData[0].languages;
+    const borderCountries = countryData[0].borders;
+    console.log(flag, nativeName, population, region, subRegion, capital, topLevelDomain, currencies, languages, borderCountries);
+    const modalFlag = document.querySelector(".modal__flag");
+    const modalName = document.querySelector(".modal__info-name");
+    const modalNativeName = document.querySelector(".modal__info-main-native");
+    const modalPopulation = document.querySelector(".modal__info-main-population");
+    const modalRegion = document.querySelector(".modal__info-main-region");
+    const modalSubRegion = document.querySelector(".modal__info-main-subregion");
+    const modalCapital = document.querySelector(".modal__info-main-capital");
+    const modalTopLevelDomain = document.querySelector(".modal__info-main-domain");
+    const modalCurrencies = document.querySelector(".modal__info-main-currencies");
+    const modalLanguages = document.querySelector(".modal__info-main-languages");
+    const modalBorderCountries = document.querySelector(".modal__info-bordercountries");
+    modalFlag.src = countryData[0].flag;
+    modalName.innerHTML = countryData[0].name;
+    modalNativeName.innerHTML = `Native Name: <span>${countryData[0].nativeName}</span>`;
+    modalPopulation.innerHTML = `Population: <span>${countryData[0].population.toLocaleString()}</span>`;
+    modalRegion.innerHTML = `Region: <span>${countryData[0].region}</span>`;
+    modalSubRegion.innerHTML = `Sub Region: <span>${countryData[0].subregion}</span>`;
+    modalCapital.innerHTML = `Capital: <span>${countryData[0].capital}</span>`;
+    modalTopLevelDomain.innerHTML = `Top Level Domain: <span>${countryData[0].topLevelDomain[0]}</span>`;
+    modalCurrencies.innerHTML = `Currencies: `;
+    console.log(modalCurrencies.innerHTML.length);
+    currencies.forEach(currency => {
+        if(modalCurrencies.innerHTML.length === 12) {
+            modalCurrencies.innerHTML += `<span>${currency.name}</span>`;
+        } else {
+            modalCurrencies.innerHTML += `, <span>${currency.name}</span>`;
+        }
+    });
+    languages.forEach(language => {
+        if(modalLanguages.innerHTML.length === 11) {
+            modalLanguages.innerHTML += `<span>${language.name}`;
+        } else {
+            modalLanguages.innerHTML += `, <span>${language.name}`;
+        }
+    });
+    if(borderCountries.length != 0) {
+        modalBorderCountries.innerHTML += `<p>Border Countries:</p>`;
+        borderCountries.forEach(country => {
+        getCountryNameFromId(country);    
+        });
+    }
+
+    async function getCountryNameFromId(country) {
+        const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`)
+        const countryName = await response.json();
+        return modalBorderCountries.innerHTML += `<button>${countryName.name}</button>`
+    }
+}
+
 
 //Run first will europe data
 fetchData("europe", null);
