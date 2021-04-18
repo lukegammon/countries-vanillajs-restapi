@@ -188,6 +188,7 @@ p span {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     min-height: 100vh;
     background: rgb(247, 247, 247);
     z-index: 9;
@@ -225,7 +226,7 @@ p span {
 }
 
 .modal__flag {
-    width: 100%;
+    max-width: 100%;
     align-self: center;
 }
 
