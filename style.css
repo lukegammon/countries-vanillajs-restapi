@@ -12,9 +12,11 @@ button {
 body {
     font-family: "Nunito Sans", sans-serif;
     background: white;
+    height: 100%;
+    width: 100%;
     /* Testing no scroll under modal */
     overflow-y: auto;
-    /* changes to position fixed when modal opened to allow modal view on mobile */
+    /* changes to position fixed when modal opened to allow modal on mobile */
     position: static;
 }
 

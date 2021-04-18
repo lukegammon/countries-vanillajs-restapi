@@ -120,7 +120,6 @@ function openModal() {
     const body = document.querySelector("body");
     modal.style.display = "block";
     body.style.position = "fixed";
-    body.style.overflowY = "hidden";
 }
 
 //Run first will europe data
