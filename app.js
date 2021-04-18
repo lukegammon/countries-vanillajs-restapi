@@ -118,8 +118,14 @@ async function fetchData(region, name) {
 function openModal() {
     const modal = document.querySelector(".modal");
     const body = document.querySelector("body");
+    const backButton = document.querySelector(".modal__backbtn");
+    backButton.addEventListener("click", () => {
+        modal.style.display = "none";
+        body.style.position = "static";
+    });
     modal.style.display = "block";
     body.style.position = "fixed";
+
 }
 
 //Run first will europe data
