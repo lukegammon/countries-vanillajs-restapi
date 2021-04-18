@@ -12,6 +12,8 @@ button {
 body {
     font-family: "Nunito Sans", sans-serif;
     background: white;
+    /* Testing no scroll under modal */
+    overflow-y: hidden;
 }
 
 .nav {
@@ -65,7 +67,6 @@ form {
 main {
     width: 80%;
     margin: 2rem auto;
-    
 }
 
 .search {
