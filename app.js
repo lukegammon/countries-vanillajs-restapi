@@ -22,6 +22,10 @@ function setViewMode(viewMode) {
     const searchBox = document.querySelector(".search__input");
     const searchDropdown = document.querySelector(".search__dropdown");
     const searchDropdownOptions = document.querySelector(".search__dropdown-options");
+    const modal = document.querySelector(".modal");
+    const modalBackbtn = document.querySelector(".modal__backbtn");
+    const modalBackbtnArrow = document.querySelector(".modal__backbtn img");
+    const modalBorderbtn = document.querySelectorAll(".border-btn");
     if(viewMode === "dark") {
         background.style.background = "hsl(207, 26%, 17%)";
         title.style.color = "hsl(0, 0%, 100%)";
@@ -38,12 +42,22 @@ function setViewMode(viewMode) {
         searchDropdownOptions.style.boxShadow = "1px 1px 5px black";
         searchDropdownOptions.style.background = "hsl(209, 23%, 22%)";
         searchDropdownOptions.style.color = "hsl(0, 0%, 100%)";
-        
+        modal.style.background = "hsl(209, 23%, 22%)";
+        modal.style.color = "hsl(0, 0%, 100%)";
+        modalBackbtn.style.color = "hsl(0, 0%, 100%)";
+        modalBackbtn.style.background = "rgb(43, 57, 69)";
+        modalBackbtn.style.boxShadow = "1px 1px 5px black";
+        modalBackbtnArrow.src = "./img/arrow-back-outline-darkmode.svg";
         cards.forEach(card => {
             card.style.background = "hsl(209, 23%, 22%)";
             card.style.color = "hsl(0, 0%, 100%)";
             card.style.boxShadow = "1px 1px 5px black";
         });
+        modalBorderbtn.forEach(button => {
+            button.style.background = "hsl(209, 23%, 22%)";
+            button.style.color = "hsl(0, 0%, 100%)";
+            button.style.boxShadow = "1px 1px 5px black";
+        })
     } else {
         background.style.background = "hsl(0, 0%, 97%)";
         title.style.color = "hsl(200, 15%, 8%)";
@@ -60,11 +74,23 @@ function setViewMode(viewMode) {
         searchDropdownOptions.style.background = "hsl(0, 0%, 100%)";
         searchDropdownOptions.style.color = "hsl(200, 15%, 8%)"
         searchDropdownOptions.style.boxShadow = "1px 1px 5px lightgrey";
+        modal.style.background = "hsl(0, 0%, 100%)";
+        modal.style.color = "hsl(200, 15%, 8%)"
+        modalBackbtn.style.color = "hsl(200, 15%, 8%)"
+        modalBackbtn.style.background = "hsl(0, 0%, 100%)";
+        modalBackbtn.style.boxShadow = "1px 1px 5px lightgrey";
+        modalBackbtnArrow.src = "./img/arrow-back-outline.svg";
         cards.forEach(card => {
             card.style.background = "hsl(0, 0%, 100%)";
             card.style.color = "hsl(200, 15%, 8%)";
             card.style.boxShadow = "1px 1px 5px lightgray";
         });
+        console.log(modalBorderbtn);
+        modalBorderbtn.forEach(button => {          
+            button.style.background = "hsl(0, 0%, 100%)";
+            button.style.color = "hsl(200, 15%, 8%)";
+            button.style.boxShadow = "1px 1px 5px lightgray";
+        })
     }
 }
 
@@ -183,16 +209,18 @@ async function setModalData(country, modal) {
         }
     });
     if(borderCountries.length != 0) {
-        modalBorderCountries.innerHTML += `<p>Border Countries:</p>`;
+        modalBorderCountries.innerHTML = `<p>Border Countries:</p>`;
         borderCountries.forEach(country => {
         getCountryNameFromId(country);    
         });
+    } else {
+        modalBorderCountries.innerHTML = `<p>Border Countries:</p>`;
     }
 
     async function getCountryNameFromId(country) {
         const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`)
         const countryName = await response.json();
-        return modalBorderCountries.innerHTML += `<button>${countryName.name}</button>`
+        return modalBorderCountries.innerHTML += `<button class="border-btn">${countryName.name}</button>`
     }
 }
 
