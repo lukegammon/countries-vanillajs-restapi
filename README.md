@@ -1,3 +1,11 @@
+COMPLETED USING VANILLA JAVASCRIPT
+
+Includes:
+-Realtime search as you type
+-Filter by region
+-Responsive Design
+-Dark Mode
+
 # Frontend Mentor - REST Countries API with color theme switcher
 
 ![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
