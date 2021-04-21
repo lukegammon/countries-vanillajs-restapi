@@ -74,7 +74,7 @@ function setViewMode(viewMode) {
         searchDropdownOptions.style.background = "hsl(0, 0%, 100%)";
         searchDropdownOptions.style.color = "hsl(200, 15%, 8%)"
         searchDropdownOptions.style.boxShadow = "1px 1px 5px lightgrey";
-        modal.style.background = "hsl(0, 0%, 100%)";
+        modal.style.background = "hsl(0, 0%, 97%)";
         modal.style.color = "hsl(200, 15%, 8%)"
         modalBackbtn.style.color = "hsl(200, 15%, 8%)"
         modalBackbtn.style.background = "hsl(0, 0%, 100%)";
