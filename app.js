@@ -155,6 +155,7 @@ function openModal(country) {
 }
 
 async function setModalData(country, modal) {
+    modal.scrollTo(0, 0);
     const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}`)
     const countryData = await response.json();
     //Collect and display data in modal
@@ -213,7 +214,7 @@ async function setModalData(country, modal) {
             btn.innerHTML = `${countryName.name}`;
             btn.classList.add("border-btn");
             btn.addEventListener("click", () => {
-                setModalData(countryName.name);
+                setModalData(countryName.name, modal);
             });
             return modalBorderCountries.appendChild(btn);
         } else {
@@ -221,7 +222,7 @@ async function setModalData(country, modal) {
             btn.innerHTML = `${countryName.name}`;
             btn.classList.add("border-btn-dark");
             btn.addEventListener("click", () => {
-                setModalData(countryName.name);
+                setModalData(countryName.name, modal);
             });
             return modalBorderCountries.appendChild(btn);
         }
@@ -283,5 +284,3 @@ function doSearch() {
         fetchData(null, inputValue);
     }, 500); // Will do the ajax stuff after 500 ms
 };
-
-
