@@ -203,21 +203,30 @@ async function setModalData(country, modal) {
         });
     } else {
         modalBorderCountries.innerHTML = ``;
-    }
+    } 
 
     async function getCountryNameFromId(country) {
         const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`)
         const countryName = await response.json();
         if(lightMode) {
-            const newButton = `<button class="border-btn">${countryName.name}</button>`;
-        return modalBorderCountries.innerHTML += newButton;
+            const btn = document.createElement("button");
+            btn.innerHTML = `${countryName.name}`;
+            btn.classList.add("border-btn");
+            btn.addEventListener("click", () => {
+                setModalData(countryName.name);
+            });
+            return modalBorderCountries.appendChild(btn);
         } else {
-            const newButton = `<button class="border-btn-dark">${countryName.name}</button>`;
-            return modalBorderCountries.innerHTML += newButton;
+            const btn = document.createElement("button");
+            btn.innerHTML = `${countryName.name}`;
+            btn.classList.add("border-btn-dark");
+            btn.addEventListener("click", () => {
+                setModalData(countryName.name);
+            });
+            return modalBorderCountries.appendChild(btn);
         }
     }
 }
-
 
 //Run first will europe data
 fetchData("europe", null);
