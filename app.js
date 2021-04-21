@@ -25,7 +25,7 @@ function setViewMode(viewMode) {
     const modal = document.querySelector(".modal");
     const modalBackbtn = document.querySelector(".modal__backbtn");
     const modalBackbtnArrow = document.querySelector(".modal__backbtn img");
-    const modalBorderbtn = document.querySelectorAll(".border-btn");
+    const modalBorderbtn = document.querySelectorAll(".modal__info-bordercountries button");
     if(viewMode === "dark") {
         background.style.background = "hsl(207, 26%, 17%)";
         title.style.color = "hsl(0, 0%, 100%)";
@@ -85,7 +85,6 @@ function setViewMode(viewMode) {
             card.style.color = "hsl(200, 15%, 8%)";
             card.style.boxShadow = "1px 1px 5px lightgray";
         });
-        console.log(modalBorderbtn);
         modalBorderbtn.forEach(button => {          
             button.style.background = "hsl(0, 0%, 100%)";
             button.style.color = "hsl(200, 15%, 8%)";
@@ -158,21 +157,10 @@ function openModal(country) {
 async function setModalData(country, modal) {
     const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}`)
     const countryData = await response.json();
-    console.log(countryData);
-    console.log(modal);
     //Collect and display data in modal
-    const flag = countryData[0].flag;
-    const name = countryData[0].name;
-    const nativeName = countryData[0].nativeName;
-    const population = countryData[0].population.toLocaleString();
-    const region = countryData[0].region;
-    const subRegion = countryData[0].subregion;
-    const capital = countryData[0].capital;
-    const topLevelDomain = countryData[0].topLevelDomain[0];
     const currencies = countryData[0].currencies;
     const languages = countryData[0].languages;
     const borderCountries = countryData[0].borders;
-    console.log(flag, nativeName, population, region, subRegion, capital, topLevelDomain, currencies, languages, borderCountries);
     const modalFlag = document.querySelector(".modal__flag");
     const modalName = document.querySelector(".modal__info-name");
     const modalNativeName = document.querySelector(".modal__info-main-native");
@@ -193,7 +181,6 @@ async function setModalData(country, modal) {
     modalCapital.innerHTML = `Capital: <span>${countryData[0].capital}</span>`;
     modalTopLevelDomain.innerHTML = `Top Level Domain: <span>${countryData[0].topLevelDomain[0]}</span>`;
     modalCurrencies.innerHTML = `Currencies: `;
-    console.log(modalCurrencies.innerHTML.length);
     currencies.forEach(currency => {
         if(modalCurrencies.innerHTML.length === 12) {
             modalCurrencies.innerHTML += `<span>${currency.name}</span>`;
@@ -201,6 +188,7 @@ async function setModalData(country, modal) {
             modalCurrencies.innerHTML += `, <span>${currency.name}</span>`;
         }
     });
+    modalLanguages.innerHTML = "Languages: ";
     languages.forEach(language => {
         if(modalLanguages.innerHTML.length === 11) {
             modalLanguages.innerHTML += `<span>${language.name}`;
@@ -214,13 +202,19 @@ async function setModalData(country, modal) {
         getCountryNameFromId(country);    
         });
     } else {
-        modalBorderCountries.innerHTML = `<p>Border Countries:</p>`;
+        modalBorderCountries.innerHTML = ``;
     }
 
     async function getCountryNameFromId(country) {
         const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`)
         const countryName = await response.json();
-        return modalBorderCountries.innerHTML += `<button class="border-btn">${countryName.name}</button>`
+        if(lightMode) {
+            const newButton = `<button class="border-btn">${countryName.name}</button>`;
+        return modalBorderCountries.innerHTML += newButton;
+        } else {
+            const newButton = `<button class="border-btn-dark">${countryName.name}</button>`;
+            return modalBorderCountries.innerHTML += newButton;
+        }
     }
 }
 
@@ -281,7 +275,4 @@ function doSearch() {
     }, 500); // Will do the ajax stuff after 500 ms
 };
 
-
-// DISABLE BODY SCROLL ON MODAL OPEN
-// ADD DARK MODE / LIGHT MODE TO MODAL ON OPEN
 

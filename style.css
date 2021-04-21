@@ -261,13 +261,25 @@ p span {
     font-weight: 600;
 }
 
-.modal__info-bordercountries button {
+.border-btn {
     padding: .3rem 1rem;
-    margin-top: .4rem;
+    margin: .4rem .4rem .4rem 0;
     text-align: center;
     border: none;
     background: none;
     box-shadow: 1px 1px 10px lightgray;
+    font-size: .7rem;
+    cursor: pointer;
+}
+
+.border-btn-dark {
+    padding: .3rem 1rem;
+    margin: .4rem .4rem .4rem 0;
+    text-align: center;
+    border: none;
+    background: hsl(209, 23%, 22%);
+    color: white;
+    box-shadow: 1px 1px 5px black;
     font-size: .7rem;
     cursor: pointer;
 }
