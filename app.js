@@ -12,6 +12,9 @@ darkmodeToggle.addEventListener("click", () => {
     }
 });
 
+window.addEventListener("load", () => {
+    loader.style.display = "none";
+})
 
 function setViewMode(viewMode) {
     const cards = document.querySelectorAll(".card");
@@ -94,6 +97,7 @@ function setViewMode(viewMode) {
 }
 
 const flow = document.querySelector(".flow");
+const loader = document.querySelector(".loader");
 
 async function fetchData(region, name) {
     flow.innerHTML = "";
@@ -107,6 +111,7 @@ async function fetchData(region, name) {
             const countries = await response.json();
                 displayCountries(countries);
         } catch (err) {
+            loader.innerHTML = "No Countries Found";
             console.error(err);
         }   
     } else {
@@ -129,14 +134,17 @@ async function fetchData(region, name) {
             } else {
                 setViewMode("dark");
             }
+            loader.style.display = "none";
         });
     }
     /* Make Cards Clickable */
     const cards = document.querySelectorAll(".card");
     cards.forEach(card => {
         card.addEventListener("click", () => {
+            loader.style.display = "flex";
             country = card.lastElementChild.firstElementChild.innerHTML;
             openModal(country);
+            loader.style.display = "none";
         })
     })
 }
@@ -259,6 +267,7 @@ dropdownMenu.addEventListener("click", () => {
 
 dropdownMenuOptions.forEach(option => {
     option.addEventListener("click", (e) => {
+        loader.style.display = "flex";
         dropdownMenuExpanded.style.display = "none";
         const region = e.target.innerHTML;
         fetchData(region, null);
@@ -269,6 +278,8 @@ dropdownMenuOptions.forEach(option => {
 let searchInput = document.querySelector(".search__input");
 searchInput.addEventListener("input", () => { 
     flow.innerHTML = "";
+    loader.style.display = "flex";
+    loader.innerHTML= `<img src="./img/loading.gif" alt="Loading..." />`;
     doSearch();
 });
 

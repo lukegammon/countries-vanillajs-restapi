@@ -21,6 +21,7 @@
     </header>
 
     <main>
+        
         <form class="search" onsubmit="return false;" autocomplete="off" onkeypress="return event.keyCode != 13;">
                 <img class="search__icon" src="./img/search-outline.svg" alt="search">
                 <input type="text" name="search" class="search__input" placeholder="Search for a country...">
@@ -33,8 +34,11 @@
                 <li class="search__dropdown-option">Oceania</li>
             </div>            
          </form>
-        
-        <section class="flow">           
+         <div class="loader">
+            <img src="./img/loading.gif" alt="Loading..." />
+        </div>
+        <section class="flow" >     
+            
         </section>
 
         <div class="modal">
