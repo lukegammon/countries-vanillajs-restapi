@@ -12,9 +12,16 @@ darkmodeToggle.addEventListener("click", () => {
     }
 });
 
+const navLogo = document.querySelector(".nav-container");
+navLogo.addEventListener("click", () => {
+    fetchData("europe", null);
+})
+
 window.addEventListener("load", () => {
     loader.style.display = "none";
-})
+});
+
+
 
 function setViewMode(viewMode) {
     const cards = document.querySelectorAll(".card");
@@ -112,6 +119,9 @@ async function fetchData(region, name) {
                 displayCountries(countries);
         } catch (err) {
             loader.innerHTML = "No Countries Found";
+            if(!lightMode) {
+                loader.style.color = "white";
+            }
             console.error(err);
         }   
     } else {
@@ -295,3 +305,4 @@ function doSearch() {
         fetchData(null, inputValue);
     }, 500); // Will do the ajax stuff after 500 ms
 };
+
